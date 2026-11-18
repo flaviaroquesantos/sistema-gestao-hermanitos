@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Protótipo do Sistema de Gestão do Instituto Hermanitos." />
+  <title>Sistema de Gestão | Instituto Hermanitos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="loginView" class="login-shell">
+    <section class="login-card">
+      <div class="brand-mark" aria-hidden="true">♥</div>
+      <p class="brand-name">Instituto Hermanitos</p>
+      <h1>Sistema de Gestão</h1>
+      <p class="muted">Apoio, acolhimento e inclusão para pessoas refugiadas e migrantes.</p>
+      <form id="loginForm" class="stack">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" autocomplete="username" value="colaborador@hermanitos.org.br" required />
+        <label for="password">Senha</label>
+        <input id="password" type="password" autocomplete="current-password" value="Hermanitos123" required />
+        <button class="btn primary full" type="submit">Entrar</button>
+        <p class="hint">Demonstração: use os dados fictícios já preenchidos.</p>
+        <p id="loginError" class="error" role="alert"></p>
+      </form>
+    </section>
+  </div>
+
+  <div id="appView" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark small">♥</span><span>Instituto<br/>Hermanitos</span></div>
+      <nav aria-label="Navegação principal">
+        <button class="nav-link active" data-view="dashboard">⌂ <span>Início</span></button>
+        <button class="nav-link" data-view="beneficiaries">♙ <span>Beneficiários</span></button>
+        <button class="nav-link" data-view="attendances">▣ <span>Atendimentos</span></button>
+        <button class="nav-link" data-view="employment">▱ <span>Empregabilidade</span></button>
+        <button class="nav-link" data-view="reports">▥ <span>Relatórios</span></button>
+      </nav>
+      <button id="logoutBtn" class="nav-link logout">⇥ <span>Sair</span></button>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><strong>Sistema de Gestão</strong><small>Apoio, acolhimento e inclusão</small></div>
+        <div class="profile"><span class="avatar">A</span><span>Ana Oliveira<br/><small>Colaboradora</small></span></div>
+      </header>
+
+      <section id="dashboardView" class="view">
+        <div class="page-heading"><div><p class="eyebrow">PAINEL INICIAL</p><h1>Bem-vinda, Ana!</h1><p class="muted">Acompanhe os registros e encaminhamentos do Instituto.</p></div></div>
+        <div class="metrics">
+          <article class="metric blue"><span>Beneficiários cadastrados</span><strong id="metricBeneficiaries">3</strong></article>
+          <article class="metric green"><span>Atendimentos registrados</span><strong id="metricAttendances">2</strong></article>
+          <article class="metric orange"><span>Encaminhamentos</span><strong id="metricReferrals">2</strong></article>
+          <article class="metric purple"><span>Oportunidades ativas</span><strong>4</strong></article>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Acesso rápido</h2></div>
+          <div class="quick-grid">
+            <button class="quick-card" data-go="beneficiaries"><b>♙</b><strong>Beneficiários</strong><span>Cadastrar e consultar pessoas atendidas</span></button>
+            <button class="quick-card" data-go="attendances"><b>▣</b><strong>Atendimentos</strong><span>Registrar e acompanhar atendimentos</span></button>
+            <button class="quick-card" data-go="employment"><b>▱</b><strong>Empregabilidade</strong><span>Consultar vagas e encaminhamentos</span></button>
+            <button class="quick-card" data-go="reports"><b>▥</b><strong>Relatórios</strong><span>Visualizar indicadores do sistema</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section id="beneficiariesView" class="view hidden">
+        <div class="page-heading"><div><p class="eyebrow">CADASTRO E CONSULTA</p><h1>Beneficiários</h1><p class="muted">Cadastre, consulte e atualize informações fictícias de demonstração.</p></div></div>
+        <div class="panel">
+          <h2 id="formTitle">Cadastro de beneficiário</h2>
+          <form id="beneficiaryForm" class="form-grid">
+            <input type="hidden" id="beneficiaryId" />
+            <div class="field"><label for="name">Nome completo *</label><input id="name" required placeholder="Nome do beneficiário" /></div>
+            <div class="field"><label for="birth">Data de nascimento</label><input id="birth" type="date" /></div>
+            <div class="field"><label for="nationality">Nacionalidade *</label><input id="nationality" required placeholder="Ex.: Venezuelana" /></div>
+            <div class="field"><label for="document">Documento fictício</label><input id="document" placeholder="Ex.: DOC-123456" /></div>
+            <div class="field"><label for="phone">Telefone fictício</label><input id="phone" placeholder="(00) 00000-0000" /></div>
+            <div class="field"><label for="emailBeneficiary">E-mail</label><input id="emailBeneficiary" type="email" placeholder="exemplo@email.com" /></div>
+            <div class="field"><label for="city">Cidade</label><input id="city" placeholder="Cidade" /></div>
+            <div class="field"><label for="education">Escolaridade</label><select id="education"><option>Não informado</option><option>Ensino Fundamental</option><option>Ensino Médio Completo</option><option>Ensino Superior</option><option>Pós-graduação</option></select></div>
+            <div class="field"><label for="profession">Experiência profissional</label><input id="profession" placeholder="Ex.: Auxiliar de Logística" /></div>
+            <div class="field wide"><label for="skills">Habilidades e competências</label><input id="skills" placeholder="Ex.: organização, estoque e atendimento" /></div>
+            <div class="form-actions wide"><span class="hint">* Campos obrigatórios</span><button type="button" id="clearForm" class="btn secondary">Limpar</button><button class="btn primary" type="submit">Salvar cadastro</button></div>
+          </form>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Lista de beneficiários</h2><input id="beneficiarySearch" class="search" placeholder="Pesquisar por nome..." aria-label="Pesquisar beneficiários" /></div>
+          <div class="table-wrap"><table><thead><tr><th>Nome</th><th>Nacionalidade</th><th>Perfil profissional</th><th>Ações</th></tr></thead><tbody id="beneficiaryRows"></tbody></table></div>
+        </div>
+      </section>
+
+      <section id="attendancesView" class="view hidden">
+        <div class="page-heading"><div><p class="eyebrow">REGISTRO DE SERVIÇOS</p><h1>Atendimentos</h1><p class="muted">Registre o acompanhamento prestado aos beneficiários.</p></div></div>
+        <div class="panel">
+          <h2>Novo atendimento</h2>
+          <form id="attendanceForm" class="form-grid">
+            <div class="field"><label for="attendanceBeneficiary">Beneficiário *</label><select id="attendanceBeneficiary" required></select></div>
+            <div class="field"><label for="attendanceType">Tipo de atendimento *</label><select id="attendanceType" required><option value="">Selecione</option><option>Orientação profissional</option><option>Atualização cadastral</option><option>Apoio documental</option><option>Encaminhamento</option></select></div>
+            <div class="field wide"><label for="attendanceNotes">Observações</label><textarea id="attendanceNotes" rows="3" placeholder="Descreva brevemente o atendimento (sem dados sensíveis)."></textarea></div>
+            <div class="form-actions wide"><button class="btn primary" type="submit">Registrar atendimento</button></div>
+          </form>
+        </div>
+        <div class="panel"><h2>Histórico recente</h2><div class="table-wrap"><table><thead><tr><th>Data</th><th>Beneficiário</th><th>Tipo</th><th>Observações</th></tr></thead><tbody id="attendanceRows"></tbody></table></div></div>
+      </section>
+
+      <section id="employmentView" class="view hidden">
+        <div class="page-heading"><div><p class="eyebrow">OPORTUNIDADES E ENCAMINHAMENTOS</p><h1>Empregabilidade</h1><p class="muted">Acompanhe oportunidades e a situação dos encaminhamentos.</p></div></div>
+        <div class="panel">
+          <h2>Novo encaminhamento</h2>
+          <form id="referralForm" class="form-grid">
+            <div class="field"><label for="referralBeneficiary">Beneficiário *</label><select id="referralBeneficiary" required></select></div>
+            <div class="field"><label for="job">Oportunidade *</label><select id="job" required><option value="">Selecione</option><option>Auxiliar de Estoque — Empresa Exemplo</option><option>Atendente — Mercado Exemplo</option><option>Auxiliar Administrativo — Organização Exemplo</option><option>Operador de Logística — Empresa Modelo</option></select></div>
+            <div class="field"><label for="referralStatus">Situação</label><select id="referralStatus"><option>Pendente</option><option>Em andamento</option><option>Concluído</option></select></div>
+            <div class="form-actions wide"><button class="btn primary" type="submit">Registrar encaminhamento</button></div>
+          </form>
+        </div>
+        <div class="panel"><h2>Lista de encaminhamentos</h2><div class="table-wrap"><table><thead><tr><th>Beneficiário</th><th>Oportunidade</th><th>Situação</th><th>Ação</th></tr></thead><tbody id="referralRows"></tbody></table></div></div>
+      </section>
+
+      <section id="reportsView" class="view hidden">
+        <div class="page-heading"><div><p class="eyebrow">VISÃO GERAL</p><h1>Relatórios</h1><p class="muted">Indicadores demonstrativos para acompanhamento da operação.</p></div></div>
+        <div class="metrics">
+          <article class="metric blue"><span>Beneficiários</span><strong id="reportBeneficiaries">3</strong></article>
+          <article class="metric green"><span>Atendimentos</span><strong id="reportAttendances">2</strong></article>
+          <article class="metric orange"><span>Encaminhamentos</span><strong id="reportReferrals">2</strong></article>
+          <article class="metric purple"><span>Oportunidades ativas</span><strong>4</strong></article>
+        </div>
+        <div class="panel"><h2>Situação dos encaminhamentos</h2><div id="statusSummary" class="status-summary"></div><p class="hint">Os números são atualizados conforme os registros realizados nesta demonstração.</p></div>
+      </section>
+      <footer>Protótipo acadêmico • Dados fictícios • Instituto Hermanitos</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
